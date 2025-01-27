@@ -7,6 +7,7 @@ import com.hmdp.dto.Result;
 import com.hmdp.entity.Shop;
 import com.hmdp.service.IShopService;
 import com.hmdp.utils.SystemConstants;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,6 +22,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/shop")
+@Slf4j
 public class ShopController {
 
     @Resource
@@ -32,9 +34,14 @@ public class ShopController {
      * @return 商铺详情数据
      */
     @GetMapping("/{id}")
-    public Result queryShopById(@PathVariable("id") Long id) {
-        return Result.ok(shopService.getById(id));
+    public Result queryShopById(@PathVariable("id") Long id)
+    {
+//        Shop shop = shopService.getById(id);
+//        log.info("直接从数据库中差的数据：{}",shop);
+//        return Result.ok(shop);
+        return shopService.queryById(id);
     }
+
 
     /**
      * 新增商铺信息
